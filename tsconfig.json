@@ -12,18 +12,14 @@
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@steeeee/my-lib": [
-        "libs/my-lib/src"
-      ],
-      "@steeeee/my-lib/*": [
-        "libs/my-lib/src/*"
-      ]
+      "@steeeee/my-lib": ["libs/my-lib/src"],
+      "@steeeee/my-lib/*": ["libs/my-lib/src/*"]
     }
   }
 }
