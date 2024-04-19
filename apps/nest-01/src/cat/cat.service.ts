@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCatDto, QueryCatDto, UpdateCatDto } from './cat.dto';
 import { Cat } from './cat.interface';
 import { v4 } from 'uuid';
 
 @Injectable()
 export class CatService {
-  private readonly cats: Cat[] = [];
+  private cats: Cat[] = [];
 
   create(createCatDto: CreateCatDto): Cat {
     const cat = { ...createCatDto, id: v4() };
@@ -13,20 +13,38 @@ export class CatService {
     return cat;
   }
 
-  findAll(queryCatDto: QueryCatDto): Cat[] {
-    /** @todo find cats by `queryCatDto` */
-    return this.cats;
+  findAll(query: QueryCatDto): Cat[] {
+    const predicate = ({ breed, sex }: Cat): boolean => {
+      // Breed doesn't match, filter out this cat
+      if (query.breed && breed !== query.breed) return false;
+      // Sex doesn't match, filter out this cat
+      if (query.sex && sex !== query.sex) return false;
+      // Cat matches all query criteria
+      return true;
+    };
+    return this.cats.filter(predicate);
   }
 
-  findOne(id: string) {
-    return `This action returns a cat: #${id}`;
+  findOne($id: string): Cat {
+    const cat = this.cats.find(({ id }) => id === $id);
+    if (!cat) throw new NotFoundException('Not found');
+    return cat;
   }
 
-  update(id: number, updateCatDto: UpdateCatDto) {
-    return `This action updates a #${id} cat`;
+  update($id: string, updateCatDto: UpdateCatDto) {
+    const cat = this.cats.find(({ id }) => id === $id);
+    if (!cat) throw new NotFoundException('Not found');
+
+    const updatedCat = { ...cat, ...updateCatDto };
+    this.cats = this.cats.map((cat) => (cat.id === $id ? updatedCat : cat));
+    return updatedCat;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} cat`;
+  remove($id: string): Cat {
+    const cat = this.cats.find(({ id }) => id === $id);
+    if (!cat) throw new NotFoundException('Not found');
+
+    this.cats = this.cats.filter(({ id }) => id !== $id);
+    return cat;
   }
 }

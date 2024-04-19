@@ -21,6 +21,7 @@ import {
   QueryCatDto,
   UpdateCatDto,
   createCatSchema,
+  updateCatSchema,
 } from './cat.dto';
 import { HttpExceptionFilter } from '@steeeee/my-lib/filter';
 import { ForbiddenException } from '@steeeee/my-lib/exceptions';
@@ -70,14 +71,15 @@ export class CatController {
   }
 
   @Patch(':id')
+  @UsePipes(new ZodValidationPipe(updateCatSchema))
   update(@Param('id') id: string, @Body() updateCatDto: UpdateCatDto) {
-    return this.catService.update(+id, updateCatDto);
+    return this.catService.update(id, updateCatDto);
   }
 
   @Delete(':id')
   @Roles(['admin'])
   remove(@Param('id') id: string) {
-    return this.catService.remove(+id);
+    return this.catService.remove(id);
   }
 
   @Get(':category/:id')

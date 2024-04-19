@@ -15,4 +15,7 @@ export const createCatSchema = z
   .required();
 export type CreateCatDto = z.infer<typeof createCatSchema>;
 
-export class UpdateCatDto {}
+export const updateCatSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+});
+export type UpdateCatDto = z.infer<typeof updateCatSchema>;
