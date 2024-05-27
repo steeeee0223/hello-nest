@@ -36,6 +36,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/nest-01/tsconfig.app.json"
       }
+    },
+    "nest-02": {
+      "type": "application",
+      "root": "apps/nest-02",
+      "entryFile": "main",
+      "sourceRoot": "apps/nest-02/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/nest-02/tsconfig.app.json"
+      }
     }
   }
 }

@@ -4,6 +4,7 @@
 
 1. `hello-nest`: Default project structure.
 2. `nest-01`: Implement controller, service & middlewares (PGIF).
+3. `nest-02`: Implement config service & interact with database.
 
 ### Important Commands
 
