@@ -45,6 +45,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/nest-02/tsconfig.app.json"
       }
+    },
+    "tiny-url": {
+      "type": "application",
+      "root": "apps/tiny-url",
+      "entryFile": "main",
+      "sourceRoot": "apps/tiny-url/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/tiny-url/tsconfig.app.json"
+      }
     }
   }
 }
