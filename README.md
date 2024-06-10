@@ -2,9 +2,10 @@
 
 ### Roadmap
 
-1. `hello-nest`: Default project structure.
-2. `nest-01`: Implement controller, service & middlewares (PGIF).
-3. `nest-02`: Implement config service & interact with database.
+1. ✅ `hello-nest`: Default project structure.
+2. ✅ `nest-01`: Implement controller, service & middlewares (PGIF).
+3. 🚧 `nest-02`: Implement config service & interact with database.
+4. 🚧 `tiny-url`: An URL shortener app
 
 ### Important Commands
 
